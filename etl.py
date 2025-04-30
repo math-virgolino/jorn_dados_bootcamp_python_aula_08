@@ -25,12 +25,12 @@ def carregar_dados(df: pd.DataFrame, format_saida: list):
         if i == 'parquet':
             df.to_parquet('dados.parquet', index=False)
 
-def run_pipeline():
-    pasta = 'data'
-    dados = extrair_dados(path=pasta)
+def run_pipeline(path: str, arquivos_saida: list):
+    dados = extrair_dados(path)
     dados = calcular_kpi_total_de_vendas(dados)
-    arquivos_de_saida = ["csv", "parquet"]
-    carregar_dados(dados, arquivos_de_saida)
+    carregar_dados(dados, arquivos_saida)
     
 if __name__ == '__main__':
-    run_pipeline()
+    pasta = 'data'
+    arquivos_saida = ["csv", "parquet"]
+    run_pipeline(pasta, arquivos_saida)
